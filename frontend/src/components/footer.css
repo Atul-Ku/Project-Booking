@@ -1,0 +1,41 @@
+/* src/Footer.css */
+.footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+    background-color: #282c34;
+    color: white;
+}
+
+.footer-section {
+    flex: 1 1 200px;
+    margin: 10px;
+}
+
+.footer-section h4 {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.footer-section p, .footer-section a {
+    color: #bbb;
+}
+
+.footer-section a {
+    text-decoration: none;
+}
+
+.footer-section a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+    .footer {
+        flex-direction: column;
+    }
+
+    .footer-section {
+        margin: 0 0 20px 0;
+    }
+}

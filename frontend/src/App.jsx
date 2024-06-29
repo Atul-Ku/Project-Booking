@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './components/Header';
 import BookingForm from './components/BookingForm';
 import './App.css';
+import Footer from './components/Footer';
 
 const App = () => {
   let TxtType = function (el, toRotate, period) {
@@ -86,6 +87,7 @@ const App = () => {
       <div className="booking-section">
         <BookingForm />
       </div>
+      <Footer />
     </div>
   );
 };
