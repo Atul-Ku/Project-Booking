@@ -41,7 +41,7 @@ const Header = () => {
               <li><a>About</a></li>
               <li><a>Services</a></li>
               <li><a>Contact Us</a></li>
-              <li><a href='#'><img src='/user.png' alt='Admin'></img></a></li>
+              <button style={{backgroundColor: 'transparent', border: 'none',marginRight: '10px', maxWidth: '30px', maxHeight: '30px', minWidth: '30px', minHeight: '30px'}}><img src='/user.png' alt='Admin'></img></button>
             </ul>
           </nav>
         </header>

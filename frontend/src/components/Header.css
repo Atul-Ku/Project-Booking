@@ -188,10 +188,16 @@ body.light-mode button {
   width: 100%;
 }
 
+.header nav ul li a{
+  text-decoration: none;
+  color: #000;
+}
+
 .header nav ul li a img{
   width: 25px;
   height: 25px;
   margin-bottom: -10px;
+  translate: -20px;
 }
 
 .header .social-icons i {
@@ -240,7 +246,7 @@ body.light-mode button {
   width: 25px;
   height: 25px;
   margin-bottom: -10px;
-  translate: -10px;
+  translate: -20px;
 }
 
 .header-dark .social-icons i {
@@ -256,9 +262,10 @@ body.light-mode button {
 
   .header .social-icons {
     margin-top: 10px;
+    
     display: flex;
     justify-content: space-around;
-    width: 100%;
+    width: max-content;
   }
 }
 
