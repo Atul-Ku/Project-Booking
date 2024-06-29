@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from './components/Header';
-import BookingForm from './components/BookingForm';
+import TrainBookingForm from './components/TrainBookingForm';
 import './App.css';
 import Footer from './components/Footer';
+import FlightBookingForm from './components/FlightBookingForm';
+import VechicleBookingForm from './components/VechicleBookingForm';
 
 const App = () => {
   let TxtType = function (el, toRotate, period) {
@@ -60,6 +62,9 @@ const App = () => {
     css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
     document.body.appendChild(css);
   };
+
+const [id,setId]=useState('Train');
+
   return (
     <div className="homepage">
       <Header />
@@ -73,19 +78,21 @@ const App = () => {
       <div className="banner">
         <div className="banner-item">
           <div style={{fontFamily:'monospace',fontWeight:'bold',fontSize:'20px'}}>Trains</div>
-          <a href='#Train'><img src="https://www.freeiconspng.com/thumbs/logistic-icon-png/train-transportation-icon-png-21.png" alt="Train" /></a>
+          <button id='Train' onClick={()=>setId('Train')}><img src="https://www.freeiconspng.com/thumbs/logistic-icon-png/train-transportation-icon-png-21.png" alt="Train" /></button>
         </div>
         <div className="banner-item">
           <div style={{fontFamily:'monospace',fontWeight:'bold',fontSize:'20px'}}>Flights</div>
-          <a href='#Flight'><img src="https://www.freeiconspng.com/thumbs/airplane-icon-png/plane-icon-png-images--pictures--becuo-8.png" alt="Flight" /></a>
+          <button id='Flight' onClick={()=>setId('Flight')}><img src="https://www.freeiconspng.com/thumbs/airplane-icon-png/plane-icon-png-images--pictures--becuo-8.png" alt="Flight" /></button>
         </div>
         <div className="banner-item">
           <div style={{fontFamily:'monospace',fontWeight:'bold',fontSize:'20px'}}>Vehicles</div>
-          <a href='#Vechicle'><img src="https://cdn-icons-png.flaticon.com/512/55/55283.png" alt="Vehicle" /></a>
+          <button id='Vechicle' onClick={()=>setId('Vechicle')}><img src="https://cdn-icons-png.flaticon.com/512/55/55283.png" alt="Vehicle" /></button>
         </div>
       </div>
       <div className="booking-section">
-        <BookingForm />
+        {id === 'Train' && <TrainBookingForm />}
+        {id === 'Flight' && <FlightBookingForm />}
+        {id === 'Vechicle' && <VechicleBookingForm />}
       </div>
       <Footer />
     </div>

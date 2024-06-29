@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState} from 'react';
 import './Header.css';
 import { FaFacebook } from "react-icons/fa";
 import { FaInstagramSquare } from "react-icons/fa";
@@ -9,13 +9,15 @@ import { useEffect } from 'react';
 
 const Header = () => {
   const dispatch = useDispatch();
-  const darkMode = useSelector((state) => state.theme.isDarkMode);
+  let darkMode = useSelector((state) => state.theme.isDarkMode);
 
-  useEffect(() => {
+  useEffect((e) => {
     if (darkMode) {
       document.body.classList.add('dark-mode');
+      localStorage.setItem('theme', darkMode);
     } else {
       document.body.classList.remove('dark-mode');
+      localStorage.setItem('theme', darkMode);
     }
   }, [darkMode]);
 

@@ -6,7 +6,7 @@ import './footer.css';
 const Footer = () => {
     const containerStyle = {
         width: '100%',
-        height: '300px'
+        height: '250px'
     };
 
     const center = {
