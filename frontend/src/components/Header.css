@@ -1,0 +1,277 @@
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode {
+  background-color: #333;
+  color: #fff;
+}
+
+body.light-mode {
+  background-color: #fff;
+  color: #000;
+}
+
+button {
+  margin: 0px;
+  padding: 0px;
+  width: 0px;
+  height: 0px;
+  background-color: #7f4dd1;
+  border: none;
+  border-radius: 100%;
+}
+
+button img{
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  background-color: #7f4dd1;
+  border: none;
+}
+
+body.dark-mode button {
+  background-color: #fff;
+  color: #333;
+}
+
+body.light-mode button {
+  background-color: #333;
+  color: #fff;
+}
+
+.Top{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
+.phone{
+  border-radius: 20px;
+  width: 30px;
+  height: 30px;
+  margin-left: -130px;
+  margin-right: 5px; 
+  margin-top: 5px; 
+}
+
+.phone-dark{
+  background-color: #7f4dd1;
+  border-radius: 20px;
+  width: 30px;
+  height: 30px;
+  margin-left: -130px;
+  margin-right: 5px; 
+  margin-top: 5px; 
+}
+
+.contact-info{
+  font-size: 18px;
+  font-weight: 900;
+  margin-left: -920px;
+  margin-top: 2px;
+}
+
+.contact-info span{
+  color: black;
+  font-size: large;
+  font: optional;
+  margin: 0 3px;
+  /* background-color: red; */
+}
+
+.contact-info-dark{
+  font-size: 18px;
+  font-weight: 900;
+  margin-left: -920px;
+  margin-top: 2px;
+}
+
+.contact-info-dark span{
+  color: #7f4dd1;
+  font-size: large;
+  font: optional;
+  margin: 0 3px;
+  /* background-color: red; */
+}
+
+.social-icons{
+  padding: 0px;
+  display: flex;
+  justify-content: space-between;
+  margin-right: -130px;
+  margin-top: 10px;
+  width: 120px;
+}
+
+.social-icons-dark{
+  padding: 0px;
+  display: flex;
+  justify-content: space-between;
+  margin-right: -130px;
+  margin-top: 10px;
+  width: 120px;
+}
+
+.social-icons a{
+    font-size: xx-large;
+    color: #000;
+}
+
+.social-icons-dark a{
+  font-size: xx-large;
+  color: #7f4dd1;
+}
+
+.header {
+  background-color: #7f4dd1;
+  padding: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+  color: white;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
+  border-radius: 20px;
+}
+
+.header-dark{
+  background-color: #7f4dd1;
+  padding: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+  color: white;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
+  border-radius: 20px;
+}
+
+.header nav ul {
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+  gap: 150px;
+  padding: 0;
+  margin: 0;
+}
+
+.header nav ul li {
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  color: #000;
+}
+
+.header nav ul li ::after {
+  font-weight: bold;
+  cursor: pointer;
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  display: block;
+  background: #000;
+  transition: width 0.5s;
+  bottom: 0;
+  left: 0;
+}
+
+.header nav ul li :hover::after {
+  width: 100%;
+}
+
+.header nav ul li a img{
+  width: 25px;
+  height: 25px;
+  margin-bottom: -10px;
+}
+
+.header .social-icons i {
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.header-dark nav ul {
+  background-color: #7f4dd1;
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+  gap: 150px;
+  padding: 0;
+  margin: 0;
+}
+
+.header-dark nav ul li {
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  color: white;
+}
+
+.header-dark nav ul li ::after {
+  font-weight: bold;
+  cursor: pointer;
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  display: block;
+  background: white;
+  transition: width 0.5s;
+  bottom: 0;
+  left: 0;
+}
+
+.header-dark nav ul li :hover::after {
+  width: 100%;
+}
+
+.header-dark nav ul li a img{
+  width: 25px;
+  height: 25px;
+  margin-bottom: -10px;
+  translate: -10px;
+}
+
+.header-dark .social-icons i {
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .header nav ul {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header .social-icons {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-dark nav ul {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header-dark .social-icons {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+}

@@ -1,0 +1,107 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .header {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .header .contact-info {
+    font-size: 14px;
+  }
+  
+  .header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .header nav ul li {
+    cursor: pointer;
+  }
+  
+  .header .social-icons i {
+    margin: 0 5px;
+    cursor: pointer;
+  }
+  
+  .banner {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .banner-item {
+    text-align: center;
+    flex: 1 1 100px;
+    margin: 10px;
+  }
+  
+  .banner-item img {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .booking-section {
+    padding: 20px;
+  }
+  
+  .booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .booking-form div {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .booking-form button {
+    align-self: flex-end;
+    padding: 10px 20px;
+  }
+  
+  @media (min-width: 768px) {
+    .booking-form {
+      flex-direction: row;
+      gap: 10px;
+    }
+  
+    .booking-form div {
+      flex: 1;
+    }
+  
+    .booking-form button {
+      align-self: center;
+      margin-left: 10px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .header nav ul {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .header .social-icons {
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+    }
+  }
+  
