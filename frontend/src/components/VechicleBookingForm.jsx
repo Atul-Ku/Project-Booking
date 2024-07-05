@@ -34,7 +34,7 @@ const VechicleBookingForm = () => {
           <label>Date</label>
           <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
         </div>
-        <button id='submit' type="submit">Book Vechicle Ticket</button>
+        <button id='submit' type="submit">Vechicle Details</button>
       </form>
     </Fragment>
   );

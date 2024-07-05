@@ -5,7 +5,9 @@ import store from './store';
 import './index.css';
 import { HelmetProvider } from 'react-helmet-async';
 import { CssBaseline } from '@mui/material';
-import App from './App';
+// import App from './App';
+// import ResponsiveAppBar from './components/Navbar';
+import Home from './components/Home';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -13,7 +15,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <HelmetProvider>
         <CssBaseline />
         <div onContextMenu={(e) => e.preventDefault()}>
-          <App />
+          <Home />
         </div>
       </HelmetProvider>
     </Provider>

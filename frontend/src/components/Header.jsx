@@ -1,11 +1,12 @@
 import React, { Fragment, useState} from 'react';
-import './Header.css';
+// import './Header.css';
 import { FaFacebook } from "react-icons/fa";
 import { FaInstagramSquare } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleTheme } from '../Reducers/theme';
 import { useEffect } from 'react';
+import ResponsiveAppBar from './Navbar';
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -23,18 +24,18 @@ const Header = () => {
 
   return (
     <Fragment>
-      <div className="Top">
-        <img className={darkMode ? "phone-dark" : "phone"} src='https://cdn-icons-png.freepik.com/256/455/455705.png?semt=ais_hybrid' alt='phone' />
+      {/* <div className="Top"> */}
+        {/* <img className={darkMode ? "phone-dark" : "phone"} src='https://cdn-icons-png.freepik.com/256/455/455705.png?semt=ais_hybrid' alt='phone' />
         <div className={darkMode ? "contact-info-dark" : "contact-info"}>
           <span>+91 7255964983</span>
-        </div>
-        <div className={darkMode ? "social-icons-dark" : "social-icons"}>
+        </div> */}
+        {/* <div className={darkMode ? "social-icons-dark" : "social-icons"}>
           <a href="https://www.facebook.com/manish.kumar.547" target='_blank'><FaFacebook /></a>
           <a href="https://www.facebook.com/manish.kumar.547" target='_blank'><FaInstagramSquare /></a>
           <a href="https://www.facebook.com/manish.kumar.547" target='_blank'><FaSquareXTwitter /></a>
         </div>
-      </div>
-        <header className={darkMode ? "header-dark" : "header"}>
+      </div> */}
+        {/* <header className={darkMode ? "header-dark" : "header"}>
           <nav>
             <ul>
               <li><img src='' alt='Logo'></img></li>
@@ -43,10 +44,13 @@ const Header = () => {
               <li><a>About</a></li>
               <li><a>Services</a></li>
               <li><a>Contact Us</a></li>
-              <button style={{backgroundColor: 'transparent', border: 'none',marginRight: '10px', maxWidth: '30px', maxHeight: '30px', minWidth: '30px', minHeight: '30px'}}><img src='/user.png' alt='Admin'></img></button>
+              <button onClick={() => window.location.href='/admin'} style={{backgroundColor: 'transparent', border: 'none',marginRight: '10px', maxWidth: '30px', maxHeight: '30px', minWidth: '30px', minHeight: '30px', underline: 'none'}}><img src='/user.png' alt='Admin'></img>
+              <p style={{fontSize: '12px',marginTop: '-3px',color: 'white'}}>Admin</p>
+              </button>
             </ul>
           </nav>
-        </header>
+        </header> */}
+        <ResponsiveAppBar />
     </Fragment>
   );
 };

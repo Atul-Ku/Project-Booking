@@ -47,7 +47,7 @@ const TrainBookingForm = () => {
           <label>Date</label>
           <input type="date" name='date' value={formData.date} onChange={handleChange} />
         </div>
-        <button id='submit' type="submit">Book Train Ticket</button>
+        <button id='submit' type="submit">Train Details</button>
       </form>
 
       {status === 'loading' && <p>Loading...</p>}

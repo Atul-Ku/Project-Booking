@@ -2,6 +2,7 @@
 import React from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import './footer.css';
+import { FaPhoneAlt } from "react-icons/fa";
 
 const Footer = () => {
     const containerStyle = {
@@ -23,7 +24,7 @@ const Footer = () => {
             <div className="footer-section">
                 <h4>Contact Us</h4>
                 <p>Email: company@example.com</p>
-                <p>Phone: +123 456 7890</p>
+                <p>Phone: <FaPhoneAlt/> +91 7255964983 </p>
             </div>
             <div className="footer-section">
                 <h4>Company</h4>

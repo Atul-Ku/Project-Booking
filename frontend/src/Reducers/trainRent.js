@@ -9,7 +9,7 @@ const initialState = {
 const options = {
 	method: 'GET',
 	headers: {
-		'x-rapidapi-key': '19ae3edd1dmsh01a4485253cc5dcp134093jsnd021107fba9a',
+		'x-rapidapi-key': '3f4fce1da3mshb2bfd3ad278da43p1d8effjsn0adbb8467bf8',
 		'x-rapidapi-host': 'irctc1.p.rapidapi.com'
 	}
 };

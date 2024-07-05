@@ -1,0 +1,74 @@
+.homepage {
+    text-align: center;
+  }
+
+.home{
+  width: 100%;
+  height: auto; 
+  max-height: 500px;
+  object-fit: fill;
+}
+  
+  .banner {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px 0;
+    flex-wrap: wrap;
+    /* background-color: red; */
+  }
+  
+  .banner-item {
+    /* background-color: blue; */
+    align-items: center;
+    padding: 10px;
+    text-align: center;
+    flex: 1 1 100px;
+    margin: 10px;
+  }
+  
+  .banner-item button {
+    display: inline-block;
+    margin-top: 10px;
+    margin-right: 10px;  
+  }
+  
+  .banner-item img {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .booking-section {
+    padding: 20px;
+  }
+  
+  .typewrite{
+    color: #76b7ec;
+    text-decoration: none;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    width: 355px;
+    overflow: hidden;
+    border-right: .15em solid orange;
+    white-space: nowrap;
+    letter-spacing: .15em;
+    animation-name: typing;
+    animation-duration: 4s;
+    animation-timing-function: steps(40, end);
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-play-state: running;
+  }
+  
+  @keyframes typing {
+    from { width: 310px }
+    to { width: 555px }
+  }
+  
+  /* The typewriter cursor effect */
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: orange; }
+  }
