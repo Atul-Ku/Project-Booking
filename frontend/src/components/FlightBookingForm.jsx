@@ -26,6 +26,18 @@ const FlightBookingForm = () => {
     });
   };
 
+  const handleClear = () => {
+    dispatch(clearFlights());
+  };
+
+  const handleSwap = () => {
+    const { from, to, date } = formData;
+    setFormData({
+      from: to,
+      to: from,
+      date: date,
+    });
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(fetchFlightDetails(formData));
@@ -40,7 +52,7 @@ const FlightBookingForm = () => {
           <label>From</label>
           <input type="text" name='from' value={formData.from} onChange={handleChange} placeholder="Enter Source" required/>
         </div>
-        <div style={{marginTop:'25px', marginBottom:'20px', marginLeft:'15px' , maxWidth:'25px'}}><FaArrowRightArrowLeft /></div>
+        <button onClick={handleSwap} style={{ marginTop: '25px', marginBottom: '20px', marginLeft: '50%', marginRight: '50%', rotate: '90deg', transparent: 'true' }}><FaArrowRightArrowLeft /></button>
         <div>
           <label>To</label>
           <input type="text" name='to' value={formData.to} onChange={handleChange} placeholder="Enter Destination" required/>
@@ -52,19 +64,37 @@ const FlightBookingForm = () => {
         <button id='submit' type="submit" >Flight Details</button>
       </form>
 
-      {error && <div>{error}</div>}
-      {status === 'loading' && <div>Loading...</div>}
+      {status === 'loading' && <p>Loading...</p>}
+      {status === 'failed' && <p>Error: {error}</p>}
       {status === 'succeeded' && (
         <div>
-          {flights.map((flight) => (
-            <div key={flight._id}>
-              <h3>{flight.originStationCode} - {flight.destinationStationCode}</h3>
-              <p>Flight Number: {flight.flightNumber}</p>
-              <p>Flight Name: {flight.equipmentId}</p>
-              <p>Departure: {flight.departureDateTime}</p>
-              <p>Arrival: {flight.arrivalDateTime}</p>
-            </div>
-          ))}
+          <h2>Available Flights</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Flight Name</th>
+                <th>Flight Source station</th>
+                <th>Flight Destination station</th>
+                <th>Starting Time</th>
+                <th>Ending Time</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {flights.map((flight) => (
+                <tr key={flight.flightNumber}>
+                  <td>{flight.equipmentId}</td>
+                  <td>{flight.originStationCode}</td>
+                  <td>{flight.destinationStationCode}</td>
+                  <td>{flight.departureDateTime}</td>
+                  <td>{flight.arrivalDateTime}</td>
+                  <td>
+                    <button onClick={() => handleSelect(train)}>Select</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       )}
 

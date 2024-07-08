@@ -9,6 +9,13 @@ const VechicleBookingForm = () => {
   const [date, setDate] = useState('');
   const dispatch = useDispatch();
 
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(bookTicket({ from, to, date }));
@@ -17,22 +24,31 @@ const VechicleBookingForm = () => {
     setDate('');
   };
 
+  const handleSwap = () => {
+    const { from, to, date } = formData;
+    setFormData({
+      from: to,
+      to: from,
+      date: date,
+    });
+  } 
+
   return (
     <Fragment>
       <h2 className='heading'>Book Vechicle Ticket</h2>
       <form className="booking-form" onSubmit={handleSubmit}>
         <div>
           <label>From</label>
-          <input type="text" value={from} onChange={(e) => setFrom(e.target.value)} />
+          <input type="text" value={from} onChange={handleChange} placeholder='From city'/>
         </div>
-        <div style={{marginTop:'25px', marginBottom:'20px', marginLeft:'15px' , maxWidth:'25px'}}><FaArrowRightArrowLeft /></div>
+        <button onClick={handleSwap} style={{ marginTop: '25px', marginBottom: '20px', marginLeft: '50%', marginRight: '50%', rotate: '90deg', transparent: 'true' }}><FaArrowRightArrowLeft /></button>
         <div>
           <label>To</label>
-          <input type="text" value={to} onChange={(e) => setTo(e.target.value)} />
+          <input type="text" value={to} onChange={handleChange} placeholder='To city'/>
         </div>
         <div>
           <label>Date</label>
-          <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+          <input type="date" value={date} onChange={handleChange} />
         </div>
         <button id='submit' type="submit">Vechicle Details</button>
       </form>

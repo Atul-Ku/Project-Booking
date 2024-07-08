@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './BookingForm.css';
 import { FaArrowRightArrowLeft } from "react-icons/fa6";
@@ -29,6 +29,24 @@ const TrainBookingForm = () => {
     dispatch(fetchTrainDetails(formData));
   };
 
+  const handleClear = () => {
+    dispatch(clearTrains());
+  };
+
+  const handleSwap = () => {
+    const { from, to, date } = formData;
+    let temp = from;
+    setFormData({
+      from: to,
+      to: temp,
+      date,
+    });
+  };
+
+  const handleSelect = (train) => {
+    // Handle train selection logic here
+    console.log('Selected train:', train);
+  };
 
   return (
     <Fragment>
@@ -38,7 +56,7 @@ const TrainBookingForm = () => {
           <label>From</label>
           <input type="text" name='from' value={formData.from} onChange={handleChange} placeholder='From Station Code' />
         </div>
-        <div style={{ marginTop: '25px', marginBottom: '20px', marginLeft: '15px', maxWidth: '25px' }}><FaArrowRightArrowLeft /></div>
+        <button onClick={handleSwap} style={{ marginTop: '25px', marginBottom: '20px', marginLeft: '50%', marginRight: '50%', rotate: '90deg', transparent: 'true' }}><FaArrowRightArrowLeft /></button>
         <div>
           <label>To</label>
           <input type="text" name='to' value={formData.to} onChange={handleChange} placeholder='To Station Code' />
@@ -55,16 +73,32 @@ const TrainBookingForm = () => {
       {status === 'succeeded' && (
         <div>
           <h2>Available Trains</h2>
-          <ul>
-            {trains.map((train) => (
-              <li key={train.train_number}>
-                <p>Train name: {train.train_name}</p>
-                <p>Journey Duration: {train.duration}</p>
-                <p>Journey Starting Time - Ending Time: {train.from_std} - {train.to_sta}</p>
-                <p>Journey Distance: {train.distance}</p>
-              </li>
-            ))}
-          </ul>
+          <table>
+            <thead>
+              <tr>
+                <th>Train Name</th>
+                <th>Journey Duration</th>
+                <th>Starting Time</th>
+                <th>Ending Time</th>
+                <th>Journey Distance</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {trains.map((train) => (
+                <tr key={train.train_number}>
+                  <td>{train.train_name}</td>
+                  <td>{train.duration}</td>
+                  <td>{train.from_std}</td>
+                  <td>{train.to_sta}</td>
+                  <td>{train.distance}</td>
+                  <td>
+                    <button onClick={() => handleSelect(train)}>Select</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       )}
     </Fragment>

@@ -74,7 +74,7 @@ const [id,setId]=useState('Train');
       </div>
       <div>
         <h1>
-          <a href="#" className="typewrite" data-period="2000" data-type='[ "Book Your Train Tickets", "Book Your Flight Tickets", "Book Your Vehicle Tickets"]'>
+          <a href="/" className="typewrite" data-period="2000" data-type='[ "Book Your Train Tickets", "Book Your Flight Tickets", "Book Your Vehicle Tickets"]'>
             <span className="wrap"></span>
           </a>
         </h1>
@@ -82,15 +82,15 @@ const [id,setId]=useState('Train');
       <div className="banner">
         <div className="banner-item">
           <div style={{fontFamily:'monospace',fontWeight:'bold',fontSize:'20px'}}>Trains</div>
-          <button id='Train' onClick={()=>setId('Train')}><img src="https://www.freeiconspng.com/thumbs/logistic-icon-png/train-transportation-icon-png-21.png" alt="Train" /></button>
+          <button id='Train' onClick={()=>setId('Train')} style={{background:'white'}}><img src="https://www.freeiconspng.com/thumbs/logistic-icon-png/train-transportation-icon-png-21.png" alt="Train" /></button>
         </div>
         <div className="banner-item">
           <div style={{fontFamily:'monospace',fontWeight:'bold',fontSize:'20px'}}>Flights</div>
-          <button id='Flight' onClick={()=>setId('Flight')}><img src="https://www.freeiconspng.com/thumbs/airplane-icon-png/plane-icon-png-images--pictures--becuo-8.png" alt="Flight" /></button>
+          <button id='Flight' onClick={()=>setId('Flight')} style={{background:'white'}}><img src="https://www.freeiconspng.com/thumbs/airplane-icon-png/plane-icon-png-images--pictures--becuo-8.png" alt="Flight" /></button>
         </div>
         <div className="banner-item">
           <div style={{fontFamily:'monospace',fontWeight:'bold',fontSize:'20px'}}>Vehicles</div>
-          <button id='Vechicle' onClick={()=>setId('Vechicle')}><img src="https://cdn-icons-png.flaticon.com/512/55/55283.png" alt="Vehicle" /></button>
+          <button id='Vechicle' onClick={()=>setId('Vechicle')} style={{background:'white'}}><img src="https://cdn-icons-png.flaticon.com/512/55/55283.png" alt="Vehicle" /></button>
         </div>
       </div>
       <div className="booking-section">

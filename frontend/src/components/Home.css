@@ -14,11 +14,9 @@
     justify-content: space-around;
     padding: 20px 0;
     flex-wrap: wrap;
-    /* background-color: red; */
   }
   
   .banner-item {
-    /* background-color: blue; */
     align-items: center;
     padding: 10px;
     text-align: center;
