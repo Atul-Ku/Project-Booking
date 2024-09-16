@@ -22,33 +22,25 @@ const Footer = () => {
                 <p>We are a company that does XYZ...</p>
             </div>
             <div className="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div className="footer-section">
+                <h4>Follow Us</h4>
+                <a href="https://www.facebook.com/"><i class="fab fa-facebook-square"></i></a>
+                <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+                <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.linkedin.com/"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <div className="footer-section">
                 <h4>Contact Us</h4>
                 <p>Email: company@example.com</p>
                 <p>Phone: <FaPhoneAlt/> +91 7255964983 </p>
-            </div>
-            <div className="footer-section">
-                <h4>Company</h4>
-                <p>Name: XYZ Company</p>
-                <p>Address: 123 Street Name, City, Country</p>
-            </div>
-            <div className="footer-section">
-                <h4>Legal</h4>
-                <p><a href="/license">License Policy</a></p>
-                <p><a href="/terms">Terms and Conditions</a></p>
-            </div>
-            <div className="footer-section">
-                <h4>Our Location</h4>
-                <LoadScript
-                    googleMapsApiKey="YOUR_GOOGLE_MAPS_API_KEY"
-                >
-                    <GoogleMap
-                        mapContainerStyle={containerStyle}
-                        center={center}
-                        zoom={10}
-                    >
-                        <Marker position={center} />
-                    </GoogleMap>
-                </LoadScript>
             </div>
         </footer>
     );

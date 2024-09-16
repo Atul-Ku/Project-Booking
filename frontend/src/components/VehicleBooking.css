@@ -1,0 +1,113 @@
+.booking {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #cde9ec;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.booking-form {
+  max-width: 1100px;
+  display: flex;
+  flex-direction: row; /* Keep inline on large screens */
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-radius: 10px;
+  flex-wrap: wrap; /* Allows elements to wrap on smaller screens */
+}
+
+.booking-form > div, .booking-form > button {
+  flex-basis: 22%;
+  margin-bottom: 15px;
+}
+
+.booking-form input {
+  width: 100%; /* Make input fields take full width within their container */
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.swap-btn {
+  background-color: transparent;
+  max-width: 40px;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #1976d2;
+  margin-top: 8px;
+  margin-right: 25px;
+}
+
+#submit {
+  width: 100%; /* Button takes full width of its container */
+  padding: 10px;
+  background-color: red;
+  color: black;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+#submit:hover {
+  background-color: #388e3c;
+}
+
+.vehicle-icon {
+  text-align: left;
+  font-size: 48px;
+  color: #1976d2;
+  margin-right: 20px; /* Space between icon and form */
+  margin-top: 10px; /* Add space above icon */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .booking {
+    flex-direction: column; /* Stack icon and form */
+    align-items: center;
+  }
+
+  .vehicle-icon {
+    text-align: center; /* Center the vehicle icon on smaller screens */
+    margin-top: 10px;
+  }
+
+  .booking-form {
+    flex-direction: column; /* Stack form elements vertically */
+    width: 100%; /* Form takes full width */
+    padding: 10px;
+  }
+
+  .booking-form input, .booking-form button {
+    width: 100%; /* Make inputs and buttons full width */
+    margin: 5px 0;
+    font-size: 16px;
+  }
+
+  .swap-btn {
+    margin: auto; /* Center the swap button */
+    rotate: 90deg; /* Rotate button on smaller screens */
+    display: flex;
+    justify-content: center;
+  }
+
+  #submit {
+    width: 100%; /* Button takes full width */
+  }
+}
+
+@media (max-width: 400px) {
+  input, #submit {
+    width: 100%;
+    font-size: 14px; /* Reduce font size for smaller screens */
+    margin: 5px 0;
+  }
+}

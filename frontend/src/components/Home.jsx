@@ -5,64 +5,11 @@ import TrainBookingForm from './TrainBookingForm';
 import Footer from './Footer';
 import FlightBookingForm from './FlightBookingForm';
 import VechicleBookingForm from './VechicleBookingForm';
-
-let TxtType = function (el, toRotate, period) {
-  this.toRotate = toRotate;
-  this.el = el;
-  this.loopNum = 0;
-  this.period = parseInt(period, 10) || 2000;
-  this.txt = '';
-  this.tick();
-  this.isDeleting = false;
-};
-
-TxtType.prototype.tick = function () {
-  var i = this.loopNum % this.toRotate.length;
-  var fullTxt = this.toRotate[i];
-
-  if (this.isDeleting) {
-    this.txt = fullTxt.substring(0, this.txt.length - 1);
-  } else {
-    this.txt = fullTxt.substring(0, this.txt.length + 1);
-  }
-
-  this.el.innerHTML = '<span className="wrap">' + this.txt + '</span>';
-
-  var that = this;
-  var delta = 200;
-
-  if (this.isDeleting) {delta /= 2;}
-
-  if (!this.isDeleting && this.txt === fullTxt) {
-    delta = this.period;
-    this.isDeleting = true;
-  } else if (this.isDeleting && this.txt === '') {
-    this.isDeleting = false;
-    this.loopNum++;
-    delta = 200;
-  }
-
-  setTimeout(function () {
-    that.tick();
-  }, delta);
-};
+import ImageCarousel from './Slider';
+import ServiceNav from './ServiceNav';
+import ImageSlider from './ImageSlider';
 
 const Home= () => {
-
-  useEffect(() => {
-    var elements = window.document.getElementsByClassName("typewrite");
-    for (var i = 0; i < elements.length; i++) {
-      var toRotate = elements[i].getAttribute('data-type');
-      var period = elements[i].getAttribute('data-period');
-      if (toRotate) {
-        new TxtType(elements[i], JSON.parse(toRotate), period);
-      }
-    }
-    // INJECT CSS
-    var css = window.document.createElement("style");
-    css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
-    window.document.body.appendChild(css);
-  },[]);
 
 const [id,setId]=useState('Train');
 
@@ -72,32 +19,25 @@ const [id,setId]=useState('Train');
       <div>
         <img className='home' src='./Home.png' alt='Home image' />
       </div>
+      <ServiceNav />
+      <div className='booking-section'>
+        <TrainBookingForm />
+      </div>
       <div>
-        <h1>
-          <a href="/" className="typewrite" data-period="2000" data-type='[ "Book Your Train Tickets", "Book Your Flight Tickets", "Book Your Vehicle Tickets"]'>
-            <span className="wrap"></span>
-          </a>
-        </h1>
+        <FlightBookingForm />
       </div>
-      <div className="banner">
-        <div className="banner-item">
-          <div style={{fontFamily:'monospace',fontWeight:'bold',fontSize:'20px'}}>Trains</div>
-          <button id='Train' onClick={()=>setId('Train')} style={{background:'white'}}><img src="https://www.freeiconspng.com/thumbs/logistic-icon-png/train-transportation-icon-png-21.png" alt="Train" /></button>
-        </div>
-        <div className="banner-item">
-          <div style={{fontFamily:'monospace',fontWeight:'bold',fontSize:'20px'}}>Flights</div>
-          <button id='Flight' onClick={()=>setId('Flight')} style={{background:'white'}}><img src="https://www.freeiconspng.com/thumbs/airplane-icon-png/plane-icon-png-images--pictures--becuo-8.png" alt="Flight" /></button>
-        </div>
-        <div className="banner-item">
-          <div style={{fontFamily:'monospace',fontWeight:'bold',fontSize:'20px'}}>Vehicles</div>
-          <button id='Vechicle' onClick={()=>setId('Vechicle')} style={{background:'white'}}><img src="https://cdn-icons-png.flaticon.com/512/55/55283.png" alt="Vehicle" /></button>
-        </div>
+      <div>
+        <VechicleBookingForm />
       </div>
-      <div className="booking-section">
-        {id === 'Train' && <TrainBookingForm />}
-        {id === 'Flight' && <FlightBookingForm />}
-        {id === 'Vechicle' && <VechicleBookingForm />}
+      <div className='why'>
+        <span>why book with</span>
+        <span>Darbhanga travels?</span>
       </div>
+      <ImageCarousel />
+      <div className='why'>
+        <span>Our Happy Clients</span>
+      </div>
+      <ImageSlider />
       <Footer />
     </div>
   );

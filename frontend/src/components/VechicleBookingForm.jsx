@@ -1,19 +1,19 @@
 import React, { Fragment, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import './BookingForm.css';
-import { FaArrowRightArrowLeft } from "react-icons/fa6";
+import './VehicleBooking.css';
+import { FaArrowRightArrowLeft, FaCar } from "react-icons/fa6";
 
-const VechicleBookingForm = () => {
+const VehicleBookingForm = () => {
   const [from, setFrom] = useState('');
   const [to, setTo] = useState('');
   const [date, setDate] = useState('');
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+    if (name === 'from') setFrom(value);
+    if (name === 'to') setTo(value);
+    if (name === 'date') setDate(value);
   };
 
   const handleSubmit = (e) => {
@@ -25,35 +25,33 @@ const VechicleBookingForm = () => {
   };
 
   const handleSwap = () => {
-    const { from, to, date } = formData;
-    setFormData({
-      from: to,
-      to: from,
-      date: date,
-    });
-  } 
+    const temp = from;
+    setFrom(to);
+    setTo(temp);
+  };
 
   return (
-    <Fragment>
-      <h2 className='heading'>Book Vechicle Ticket</h2>
+    <div className="booking">
       <form className="booking-form" onSubmit={handleSubmit}>
         <div>
-          <label>From</label>
-          <input type="text" value={from} onChange={handleChange} placeholder='From city'/>
+          <input type="text" name="from" value={from} onChange={handleChange} placeholder='From city' />
         </div>
-        <button onClick={handleSwap} style={{ marginTop: '25px', marginBottom: '20px', marginLeft: '50%', marginRight: '50%', rotate: '90deg', transparent: 'true' }}><FaArrowRightArrowLeft /></button>
+        <button type="button" onClick={handleSwap} className="swap-btn">
+          <FaArrowRightArrowLeft />
+        </button>
         <div>
-          <label>To</label>
-          <input type="text" value={to} onChange={handleChange} placeholder='To city'/>
+          <input type="text" name="to" value={to} onChange={handleChange} placeholder='To city' />
         </div>
         <div>
-          <label>Date</label>
-          <input type="date" value={date} onChange={handleChange} />
+          <input type="date" name="date" value={date} onChange={handleChange} />
         </div>
-        <button id='submit' type="submit">Vechicle Details</button>
+        <button id="submit" type="button">Search</button>
       </form>
-    </Fragment>
+      <div className="vehicle-icon">
+        <FaCar />
+      </div>
+    </div>
   );
 };
 
-export default VechicleBookingForm;
+export default VehicleBookingForm;

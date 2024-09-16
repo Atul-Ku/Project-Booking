@@ -1,108 +1,150 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import './BookingForm.css';
+import React, { useState } from 'react';
+import { TextField, Button, Grid, Avatar, IconButton } from '@mui/material';
+import TrainIcon from '@mui/icons-material/Train';
+import { styled } from '@mui/system';
 import { FaArrowRightArrowLeft } from "react-icons/fa6";
-import { fetchTrainDetails } from '../Reducers/trainRent';
-import { clearTrains } from '../Reducers/trainRent';
 
-const TrainBookingForm = () => {
-  const [formData, setFormData] = useState({
-    from: '',
-    to: '',
-    date: '',
-  });
+const FormContainer = styled('div')(({ theme }) => ({
+  maxWidth: '90%',
+  margin: 'auto',
+  padding: theme.spacing(3),
+  backgroundColor: '#cde9ec',
+  borderRadius: '20px',
+  boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
+}));
 
-  const dispatch = useDispatch();
-  const trains = useSelector((state) => state.train.trains);
-  const status = useSelector((state) => state.train.status);
-  const error = useSelector((state) => state.train.error);
+const InlineContainer = styled(Grid)(({ theme }) => ({
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  flexWrap: 'wrap',
+  [theme.breakpoints.down('sm')]: {
+    maxWidth: '100%',
+    margin: '0 auto',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+  },
+  'input::placeholder': {
+    color: 'black',
+  }
+}));
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+const RotatingButton = styled(IconButton)(({ rotate }) => ({
+  transition: 'transform 0.3s ease-in-out',
+  transform: rotate ? 'rotate(90deg)' : 'rotate(0deg)',
+}));
+
+const BookingForm = () => {
+  const [from, setFrom] = useState(''); // State for "From" input
+  const [to, setTo] = useState(''); // State for "To" input
+  const [date, setDate] = useState(''); // State for "Date" input
+  const [message, setMessage] = useState(''); // State for "Message" input
+  const [isRotated, setIsRotated] = useState(false);
+
+  // Function to handle rotation on window resize
+  const handleResize = () => {
+    if (window.innerWidth < 600) {
+      setIsRotated(true);
+    }
+    if (window.innerWidth >= 600) {
+      setIsRotated(false);
+    }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(fetchTrainDetails(formData));
-  };
+    const handleSwap = () => {
+      const temp = from;
+      setFrom(to);
+      setTo(temp);
+    };
 
-  const handleClear = () => {
-    dispatch(clearTrains());
-  };
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      // Perform form submission logic here
+      alert('Booking Successful!');
+    };
 
-  const handleSwap = () => {
-    const { from, to, date } = formData;
-    let temp = from;
-    setFormData({
-      from: to,
-      to: temp,
-      date,
-    });
-  };
-
-  const handleSelect = (train) => {
-    // Handle train selection logic here
-    console.log('Selected train:', train);
-  };
+  // Add event listener to track window resize
+  React.useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
-    <Fragment>
-      <h2 className='heading'>Book Train Ticket</h2>
-      <form className="booking-form" onSubmit={handleSubmit}>
-        <div>
-          <label>From</label>
-          <input type="text" name='from' value={formData.from} onChange={handleChange} placeholder='From Station Code' />
-        </div>
-        <button onClick={handleSwap} style={{ marginTop: '25px', marginBottom: '20px', marginLeft: '50%', marginRight: '50%', rotate: '90deg', transparent: 'true' }}><FaArrowRightArrowLeft /></button>
-        <div>
-          <label>To</label>
-          <input type="text" name='to' value={formData.to} onChange={handleChange} placeholder='To Station Code' />
-        </div>
-        <div>
-          <label>Date</label>
-          <input type="date" name='date' value={formData.date} onChange={handleChange} />
-        </div>
-        <button id='submit' type="submit">Train Details</button>
-      </form>
+    <FormContainer>
+      <InlineContainer container spacing={2}>
+        <Grid item xs={12} sm={2}>
+          <TextField
+            fullWidth
+            label="From"
+            name='from'
+            type="text"
+            placeholder="From"
+            variant="outlined"
+            sx={{ mb: 2, 'input::placeholder': { color: '#555' } }}
+            value={from} // Bind "from" state to TextField
+            onChange={(e) => setFrom(e.target.value)} // Update "from" state on TextField change
+          />
+        </Grid>
+        <Grid item xs={12} sm={1}>
+          <RotatingButton rotate={isRotated} onClick={handleSwap}>
+            <FaArrowRightArrowLeft />
+          </RotatingButton>
+        </Grid>
+        <Grid item xs={12} sm={2}>
+          <TextField
+            fullWidth
+            label="To"
+            name='to'
+            type="text"
+            placeholder="To"
+            variant="outlined"
+            sx={{ mb: 2, 'input::placeholder': { color: '#555' } }}
+            value={to} // Bind "to" state to TextField
+            onChange={(e) => setTo(e.target.value)} // Update "to" state on TextField change
+          />
+        </Grid>
+        <Grid item xs={12} sm={2}>
+          <TextField
+            fullWidth
+            label="Date"
+            type="date"
+            name='date'
+            InputLabelProps={{ shrink: true }}
+            variant="outlined"
+            sx={{ mb: 2, 'input::placeholder': { color: '#555' } }}
+            value={date} // Bind "date" state to TextField
+            onChange={(e) => setDate(e.target.value)} // Update "date" state on TextField change
+          />
+        </Grid>
+        <Grid item xs={12} sm={3}>
+          <TextField
+            fullWidth
+            label="Message"
+            name='message'
+            placeholder="Write your message"
+            variant="outlined"
+            sx={{ mb: 2, 'input::placeholder': { color: '#555' } }}
+            value={message} // Bind "message" state to TextField
+            onChange={(e) => setMessage(e.target.value)} // Update "message" state on TextField change
+          />
+        </Grid>
+      </InlineContainer>
 
-      {status === 'loading' && <p>Loading...</p>}
-      {status === 'failed' && <p>Error: {error}</p>}
-      {status === 'succeeded' && (
-        <div>
-          <h2>Available Trains</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Train Name</th>
-                <th>Journey Duration</th>
-                <th>Starting Time</th>
-                <th>Ending Time</th>
-                <th>Journey Distance</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {trains.map((train) => (
-                <tr key={train.train_number}>
-                  <td>{train.train_name}</td>
-                  <td>{train.duration}</td>
-                  <td>{train.from_std}</td>
-                  <td>{train.to_sta}</td>
-                  <td>{train.distance}</td>
-                  <td>
-                    <button onClick={() => handleSelect(train)}>Select</button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
-    </Fragment>
+      <div style={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center', marginTop: '16px' }}>
+        <Avatar sx={{ width: 64, height: 64, backgroundColor: '#1976d2' }}>
+          <TrainIcon sx={{ fontSize: 40 }} />
+        </Avatar>
+        <Button
+          variant="contained"
+          type='submit'
+          onClick={handleSubmit}
+          sx={{ backgroundColor: '#4caf50', color: '#fff', ml: 2, '&:hover': { backgroundColor: '#388e3c' } }}
+        >
+          Proceed to Payment
+        </Button>
+      </div>
+    </FormContainer>
   );
 };
 
-export default TrainBookingForm;
+export default BookingForm;

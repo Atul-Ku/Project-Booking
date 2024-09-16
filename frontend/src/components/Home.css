@@ -36,7 +36,9 @@
   }
   
   .booking-section {
-    padding: 20px;
+
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
   
   .typewrite{
@@ -69,4 +71,103 @@
   @keyframes blink-caret {
     from, to { border-color: transparent }
     50% { border-color: orange; }
+  }
+
+  .why {
+    margin-top: 30px;
+    margin-left: 30px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Flexbox doesn't use 'start', should be 'flex-start' */
+    justify-content: flex-start;
+    gap: -10px; /* Negative gaps are not valid, so changed it to a positive value */
+  }
+  
+  /* Styling for the text */
+  .why span {
+    font-weight: bolder;
+    font-size: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+  
+  /* Adjustments for tablet screens */
+  @media (max-width: 768px) {
+    .why {
+      margin-left: 20px; /* Reduced margin for smaller screens */
+    }
+  
+    .why span {
+      font-size: 18px; /* Reduce font size slightly on tablets */
+    }
+  }
+  
+  @media (max-width: 540px) {
+    .why {
+      margin-left: 20px; /* Reduced margin for smaller screens */
+    }
+  
+    .why span {
+      font-size: 16px; /* Reduce font size slightly on tablets */
+    }
+  }
+
+  /* Adjustments for mobile screens */
+  @media (max-width: 480px) {
+    .why {
+      margin-left: 15px;
+    }
+  
+    .why span {
+      font-size: 14px; /* Further reduce font size for mobile */
+    }
+  }
+  
+  .client {
+      margin-top: 30px;
+      margin-left: 30px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start; /* Flexbox doesn't use 'start', should be 'flex-start' */
+      justify-content: flex-start;
+      gap: -10px; /* Negative gaps are not valid, so changed it to a positive value */
+  }
+
+  .client span {
+    font-weight: bolder;
+    font-size: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+  
+  /* Adjustments for tablet screens */
+  @media (max-width: 768px) {
+    .client {
+      margin-left: 20px; /* Reduced margin for smaller screens */
+    }
+  
+    .client span {
+      font-size: 18px; /* Reduce font size slightly on tablets */
+    }
+  }
+  
+  @media (max-width: 540px) {
+    .client {
+      margin-left: 20px; /* Reduced margin for smaller screens */
+    }
+  
+    .client span {
+      font-size: 16px; /* Reduce font size slightly on tablets */
+    }
+  }
+
+  /* Adjustments for mobile screens */
+  @media (max-width: 480px) {
+    .client {
+      margin-left: 15px;
+    }
+  
+    .client span {
+      font-size: 14px; /* Further reduce font size for mobile */
+    }
   }

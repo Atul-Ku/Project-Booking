@@ -1,13 +1,10 @@
 import React, { Fragment, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import './BookingForm.css';
+import { useDispatch, useSelector } from 'react-redux';
 import { FaArrowRightArrowLeft } from "react-icons/fa6";
-import { fetchFlightDetails } from '../Reducers/flightRent';
-import { clearFlights } from '../Reducers/flightRent';
-import { useSelector } from 'react-redux';
+import { fetchFlightDetails, clearFlights } from '../Reducers/flightRent';
+import './BookingForm.css';
 
 const FlightBookingForm = () => {
-
   const [formData, setFormData] = useState({
     from: '',
     to: '',
@@ -26,10 +23,6 @@ const FlightBookingForm = () => {
     });
   };
 
-  const handleClear = () => {
-    dispatch(clearFlights());
-  };
-
   const handleSwap = () => {
     const { from, to, date } = formData;
     setFormData({
@@ -38,30 +31,29 @@ const FlightBookingForm = () => {
       date: date,
     });
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(fetchFlightDetails(formData));
   };
 
-
   return (
     <Fragment>
-      <h2 className='heading'>Book Flight Ticket</h2>
       <form className="booking-form" onSubmit={handleSubmit}>
-        <div>
-          <label>From</label>
-          <input type="text" name='from' value={formData.from} onChange={handleChange} placeholder="Enter Source" required/>
+        <div className="form-group-inline">
+          <input type="text" name='from' value={formData.from} onChange={handleChange} placeholder="From" required/>
         </div>
-        <button onClick={handleSwap} style={{ marginTop: '25px', marginBottom: '20px', marginLeft: '50%', marginRight: '50%', rotate: '90deg', transparent: 'true' }}><FaArrowRightArrowLeft /></button>
-        <div>
-          <label>To</label>
-          <input type="text" name='to' value={formData.to} onChange={handleChange} placeholder="Enter Destination" required/>
+        <button onClick={handleSwap} className="swap-btn"><FaArrowRightArrowLeft /></button>
+        <div className="form-group-inline">
+          <input type="text" name='to' value={formData.to} onChange={handleChange} placeholder="To" required/>
         </div>
-        <div>
-          <label>Date</label>
+        <div className="form-group-inline">
           <input type="date" name='date' value={formData.date} onChange={handleChange} required/>
         </div>
-        <button id='submit' type="submit" >Flight Details</button>
+        <div>
+        <button id='submit' type="submit">Search</button>
+        </div>
+        <img src="https://i.ibb.co/6vYD9kM/Flight-Booking.png" alt="Flight Booking" border="0" className="flight-image"/>
       </form>
 
       {status === 'loading' && <p>Loading...</p>}
@@ -89,7 +81,7 @@ const FlightBookingForm = () => {
                   <td>{flight.departureDateTime}</td>
                   <td>{flight.arrivalDateTime}</td>
                   <td>
-                    <button onClick={() => handleSelect(train)}>Select</button>
+                    <button>Select</button>
                   </td>
                 </tr>
               ))}
@@ -97,7 +89,6 @@ const FlightBookingForm = () => {
           </table>
         </div>
       )}
-
     </Fragment>
   );
 };
