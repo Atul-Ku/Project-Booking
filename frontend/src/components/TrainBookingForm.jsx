@@ -35,11 +35,13 @@ const RotatingButton = styled(IconButton)(({ rotate }) => ({
 }));
 
 const BookingForm = () => {
+  const [user, setUser] = useState(''); // State for user name
   const [from, setFrom] = useState(''); // State for "From" input
   const [to, setTo] = useState(''); // State for "To" input
   const [date, setDate] = useState(''); // State for "Date" input
   const [message, setMessage] = useState(''); // State for "Message" input
   const [isRotated, setIsRotated] = useState(false);
+  const [Train_Number, setTrainNumber] = useState(0);
 
   // Function to handle rotation on window resize
   const handleResize = () => {
@@ -51,17 +53,42 @@ const BookingForm = () => {
     }
   };
 
-    const handleSwap = () => {
-      const temp = from;
-      setFrom(to);
-      setTo(temp);
-    };
+  const handleSwap = () => {
+    const temp = from;
+    setFrom(to);
+    setTo(temp);
+  };
 
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      // Perform form submission logic here
-      alert('Booking Successful!');
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const data = {
+      user: user, // Include user name in the data
+      from_location: from,
+      to_location: to,
+      train: Train_Number,
+      message: message,
+      date: date,
     };
+    try {
+      const response = await fetch('http://localhost:8000/api/feedback/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Success:', data);
+        alert('Booking Successful!');
+      } else {
+        console.error('Error submitting the form');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
   // Add event listener to track window resize
   React.useEffect(() => {
@@ -72,6 +99,20 @@ const BookingForm = () => {
   return (
     <FormContainer>
       <InlineContainer container spacing={2}>
+        <Grid item xs={12} sm={2}>
+          <TextField
+            fullWidth
+            label="User Name" // Label for the new input field
+            name='user'
+            type="text"
+            placeholder="Enter your name"
+            variant="outlined"
+            sx={{ mb: 2, 'input::placeholder': { color: '#555' } }}
+            value={user} // Bind "user" state to TextField
+            onChange={(e) => setUser(e.target.value)} // Update "user" state on TextField change
+          />
+        </Grid>
+
         <Grid item xs={12} sm={2}>
           <TextField
             fullWidth
@@ -101,6 +142,20 @@ const BookingForm = () => {
             sx={{ mb: 2, 'input::placeholder': { color: '#555' } }}
             value={to} // Bind "to" state to TextField
             onChange={(e) => setTo(e.target.value)} // Update "to" state on TextField change
+          />
+        </Grid>
+
+        <Grid item xs={12} sm={2}>
+          <TextField
+            fullWidth
+            label="Train_Number"
+            name='Train_Number'
+            type="text"
+            placeholder="00000"
+            variant="outlined"
+            sx={{ mb: 2, 'input::placeholder': { color: '#555' } }}
+            value={Train_Number} // Bind "Train_Number" state to TextField
+            onChange={(e) => setTrainNumber(e.target.value)} // Update "Train_Number" state on TextField change
           />
         </Grid>
         <Grid item xs={12} sm={2}>

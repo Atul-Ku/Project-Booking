@@ -293,6 +293,22 @@ body.light-mode button {
   }
 } */
 
+.admin-button {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #007bff; /* Button color */
+  color: white;
+  text-decoration: none; /* Remove underline */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.admin-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
 .header {
   background-color: #06dd83;
   padding: 10px;
