@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { LiaWhatsapp } from "react-icons/lia";
+// import { LiaWhatsapp } from "react-icons/lia";
 import './Header.css';
 import { NavLink,Link} from "react-router-dom"
 const Header = () => {
@@ -20,7 +20,7 @@ const Header = () => {
   return (
    
     <div className="header">
-       {/* <Link to="/admin" className="admin-button">Admin</Link> */}
+        
       <div className="logo">
         {logoText}
       </div>

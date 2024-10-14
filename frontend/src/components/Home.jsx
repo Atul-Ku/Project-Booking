@@ -15,7 +15,7 @@ const [id,setId]=useState('Train');
 
   return (
     <div className="homepage">
-      <Header />
+       <Header /> 
       <div>
         <img className='home' src='./Home.png' alt='Home image' />
       </div>
