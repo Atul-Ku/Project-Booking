@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { TextField, Button, Container, Box, Typography } from "@mui/material";
 import { setUsername, setPassword, login } from '../Reducers/LoginReducer';
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast"; // Import toast
 const AdminLogin = () => {
   const dispatch = useDispatch();
   const { username, password ,isLoggedIn} = useSelector((state) => state.auth);
@@ -17,7 +18,7 @@ const AdminLogin = () => {
   };
 const navigate=useNavigate();
   const handleLogin = (e) => {
-    e.preventDefault(); // Prevent default form submission
+    e.preventDefault(); 
     dispatch(login({navigate}));
   };
 
