@@ -135,7 +135,7 @@ function DetailsTable() {
   return (
     <div className="details-table-container">
       {/* First Table: Details */}
-      <h2>Order Table</h2>
+      <h2>Pending Train Bookings</h2>
       <table className="details-table">
         <thead>
           <tr>
@@ -159,7 +159,7 @@ function DetailsTable() {
                   onClick={() => handleDeleteEntry(row.id, row)}
                   style={{ backgroundColor: '#d9534f', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }}
                 >
-                  Save
+                  Book
                 </button>
               </td>
             </tr>
@@ -168,7 +168,7 @@ function DetailsTable() {
       </table>
 
       {/* Second Table: Save Data */}
-      <h2>Completed Table</h2>
+      <h2>Confirmed Train Bookings</h2>
       <table className="details-table">
         <thead>
           <tr>
