@@ -53,7 +53,7 @@ const FlightBookingForm = () => {
         <div>
         <button id='submit' type="submit">Search</button>
         </div>
-        <img src="https://i.ibb.co/6vYD9kM/Flight-Booking.png" alt="Flight Booking" border="0" className="flight-image"/>
+        <img src="/flight.f515b25a.svg" alt="Flight Booking" border="0" className="flight-image"/>
       </form>
 
       {status === 'loading' && <p>Loading...</p>}
