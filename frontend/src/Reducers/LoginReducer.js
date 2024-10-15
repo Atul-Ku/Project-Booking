@@ -21,7 +21,7 @@ const authSlice = createSlice({
       if (state.username === "admin" && state.password === "password") {
         state.isLoggedIn = true;
         console.log("Logging in successful");
-       navigate('/api/details');
+       navigate('/apilink');
       } else {
         state.isLoggedIn = false;
         console.log("Login failed");

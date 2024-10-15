@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './DetailsTable.css'; // Importing the custom CSS file
 
 function DetailsTable() {
-  const columns = ["user", "from_location", "to_location", "age","message","date","phone"];
+  const columns = ["user", "from_location", "to_location", ,"message","date","phone"];
   const [details, setDetails] = useState([]); // State to store fetched data from /api/details
   const [saveData, setSaveData] = useState([]); // State to store fetched data from /api/save
   const [loadingDetails, setLoadingDetails] = useState(true); // State to manage loading status for details
@@ -13,7 +13,7 @@ function DetailsTable() {
   // Fetch data from /api/details and /api/save when the component is mounted
   useEffect(() => {
     // Fetch details
-    fetch('http://127.0.0.1:8000/api/details/')
+    fetch('http://127.0.0.1:8000/api/details_car/')
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok for details');
@@ -31,7 +31,7 @@ function DetailsTable() {
       });
 
     // Fetch save data
-    fetch('http://127.0.0.1:8000/api/savedetails/')
+    fetch('http://127.0.0.1:8000/api/savedetails_car/')
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok for save data');
@@ -65,7 +65,7 @@ function DetailsTable() {
   const handleDeleteEntry = (id, rowData) => {
     if (window.confirm("Are you sure to Save this entry?")) {
       // Make a single API call to delete and save in the backend using POST
-      fetch(`http://127.0.0.1:8000/api/details/delete_and_save/`, {
+      fetch(`http://127.0.0.1:8000/api/details/delete_and_save_car/`, {
         method: 'POST', // Changed to POST
         headers: {
           'Content-Type': 'application/json',
@@ -79,29 +79,11 @@ function DetailsTable() {
           return response.json(); // Optional: Handle the response if needed
         })
         .then((savedEntry) => {
-          // Optionally, you can log the saved entry
           console.log("Saved entry:", savedEntry);
-          // Update the state by removing the deleted entry
           setDetails((prevDetails) => prevDetails.filter((detail) => detail.id !== id));
-        
-          // Update the `saveData` state to add the saved entry
-          fetch('http://127.0.0.1:8000/api/savedetails/')
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error('Network response was not ok for save data');
-            }
-            return response.json();
-          })
-          .then((data) => {
-            console.log("Fetched save data:", data); // Log the data to inspect the format
-            setSaveData(data); // Set the fetched save data to the state
-            setLoadingSave(false); // Set loading to false once data is fetched
-          })
-          .catch((error) => {
-            setErrorSave(error.message); // Handle errors
-            setLoadingSave(false); // Set loading to false in case of an error
-          });
-          alert("Entry saved successfully"); // Alert success message
+          // Manually update saveData state
+          setSaveData(prevSaveData => [...prevSaveData, savedEntry]); 
+          alert("Entry saved successfully!");
         })
         .catch((error) => {
           console.error('Error:', error);
@@ -114,13 +96,13 @@ function DetailsTable() {
 
   const handleDeleteAll = () => {
     if (window.confirm("Are you sure to delete all details?")) {
-      fetch('http://127.0.0.1:8000/api/clear_all_details/', {
+      fetch('http://127.0.0.1:8000/api/clear_all_details_car/', {
         method: 'DELETE',
       })
         .then((response) => {
           if (response.ok) {
-            setSaveData([]); // Clear the details from the state
-            alert("All details deleted successfully"); // Alert success message
+            setDetails([]); // Clear the details from the state
+            alert("All details deleted successfully, Kindly Refresh the page."); // Alert success message
           } else {
             throw new Error('Failed to delete details');
           }
@@ -135,7 +117,7 @@ function DetailsTable() {
   return (
     <div className="details-table-container">
       {/* First Table: Details */}
-      <h2>Order Table</h2>
+      <h2>Details Table</h2>
       <table className="details-table">
         <thead>
           <tr>
@@ -168,7 +150,7 @@ function DetailsTable() {
       </table>
 
       {/* Second Table: Save Data */}
-      <h2>Completed Table</h2>
+      <h2>Save Data Table</h2>
       <table className="details-table">
         <thead>
           <tr>

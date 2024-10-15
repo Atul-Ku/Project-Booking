@@ -9,9 +9,9 @@ const Admin = lazy(() => import("./components/AdminLogin"));
 const Services = lazy(() => import("./pages/Services"));
 const ContactUs = lazy(() => import("./pages/Contact"));
 const DetailsTable = lazy(() => import("./components/DetailsTable"));
-
+const ApiLinks=lazy(()=>import("./components/ApiLinks"));
+const CarDetailsTable=lazy(()=>import("./components/CarDetailsTable"));
 const App = () => {
-  const columns = ["id", "user", "from_location", "to_location", "train","message","date"];
 
   return (
     <BrowserRouter>
@@ -26,7 +26,23 @@ const App = () => {
             path="/api/details"
             element={
               <ProtectedRoute>
-                <DetailsTable columns={columns} />
+                <DetailsTable />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/api/details_car"
+            element={
+              <ProtectedRoute>
+                <CarDetailsTable/>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/apilink"
+            element={
+              <ProtectedRoute>
+                <ApiLinks/>
               </ProtectedRoute>
             }
           />
