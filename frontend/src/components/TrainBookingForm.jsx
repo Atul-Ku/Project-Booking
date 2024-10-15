@@ -186,7 +186,7 @@ const BookingForm = () => {
       </InlineContainer>
 
       <div style={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center', marginTop: '16px' }}>
-        <Avatar sx={{ width: 64, height: 64, backgroundColor: '#1976d2' }}>
+        <Avatar sx={{ width: 64, height: 64, backgroundColor: '#1976d2' ,padding: 4}}>
           <TrainIcon sx={{ fontSize: 40 }} />
         </Avatar>
         <Button
