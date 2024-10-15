@@ -77,6 +77,12 @@ const BookingForm = () => {
     return; // Prevent submission
   }
 
+  if(!message)
+  {
+    alert('Please enter some message!');
+    return;
+  }
+
   if (!isValidPhoneNumber.test(phone)) {
     alert('Phone number must be exactly 10 digits.');
     return; // Prevent submission

@@ -296,7 +296,7 @@ body.light-mode button {
 .admin-button {
   display: inline-block;
   padding: 5px 10px;
-  background-color: #007bff; /* Button color */
+  background-color: rgb(1, 140, 1); /* Button color */
   color: white;
   text-decoration: none; /* Remove underline */
   border: none;
@@ -306,11 +306,11 @@ body.light-mode button {
 }
 
 .admin-button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
+  background-color: rgb(4, 117, 4); /* Darker blue on hover */
 }
 
 .header {
-  background-color: #06dd83;
+  background-color: rgb(36,75,142);
   padding: 10px;
   height: 60px;
   color: white;
@@ -322,8 +322,8 @@ body.light-mode button {
 
 .logo {
   margin-left: 10px;
-  color: white;
-  background-color: red;
+  color: black;
+  background-color: aqua;
   padding: 8px;
   border-radius: 10px;
 }
