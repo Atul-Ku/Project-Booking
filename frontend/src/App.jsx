@@ -9,18 +9,20 @@ const Admin = lazy(() => import("./components/AdminLogin"));
 const Services = lazy(() => import("./pages/Services"));
 const ContactUs = lazy(() => import("./pages/Contact"));
 const DetailsTable = lazy(() => import("./components/DetailsTable"));
-const ApiLinks=lazy(()=>import("./components/ApiLinks"));
-const CarDetailsTable=lazy(()=>import("./components/CarDetailsTable"));
+const ApiLinks = lazy(() => import("./components/ApiLinks"));
+const CarDetailsTable = lazy(() => import("./components/CarDetailsTable"));
+const AdminDashboard = lazy(() => import("./admin/dashboard"))
 const App = () => {
 
   return (
     <BrowserRouter>
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
-        <Route path="/admin" element={<Admin />} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/" element={<Home />} />
-          
-          <Route path="/services" element={<Services />} /> 
+
+          <Route path="/services" element={<Services />} />
           <Route path="/contact-us" element={<ContactUs />} />
           <Route
             path="/api/details"
@@ -34,7 +36,7 @@ const App = () => {
             path="/api/details_car"
             element={
               <ProtectedRoute>
-                <CarDetailsTable/>
+                <CarDetailsTable />
               </ProtectedRoute>
             }
           />
@@ -42,7 +44,7 @@ const App = () => {
             path="/apilink"
             element={
               <ProtectedRoute>
-                <ApiLinks/>
+                <ApiLinks />
               </ProtectedRoute>
             }
           />
