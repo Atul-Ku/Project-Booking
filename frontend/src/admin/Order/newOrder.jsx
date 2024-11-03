@@ -1,12 +1,18 @@
 import React from 'react';
 import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
-import { AppBar, Toolbar, Typography, Drawer, List, ListItem, ListItemIcon, ListItemText, Box, Paper, Grid, Button, Table, TableBody, TableCell, TableHead, TableRow, Avatar, Divider, TextField, IconButton, Collapse, MenuItem, TableContainer, Step, StepLabel, Stepper, Container } from '@mui/material';
+import { AppBar, Toolbar, Typography, Drawer, List, ListItem, ListItemIcon, ListItemText, Box, Paper, Grid, Button, Table, TableBody, TableCell, TableHead, TableRow, Avatar, Divider, TextField, IconButton, Collapse, MenuItem, TableContainer, Step, StepLabel, Stepper, Container, Select, InputLabel, FormControl } from '@mui/material';
 import { Home, Person, ShoppingCart, Payment, Info, Search, AssignmentTurnedIn, ExpandLess, ExpandMore, Add, Create, Flight, Cancel, ViewList, AddShoppingCart, Report, PendingActions, Today, ChevronLeft, ChevronRight } from '@mui/icons-material'; // Added AssignmentTurnedIn
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import AdminIcon from '@mui/icons-material/AccountCircle'; // for the admin icon
+// import TrainIcon from '@mui/icons-material/Train';
+// import './neworder.css';
 
 const NewOrder = () => {
+    const [activeStep, setActiveStep] = React.useState(0);
+    const [Quota, setQuota] = useState('');
+    const [Class, setClass] = useState('');
+    const [paymentType, setPaymentType] = useState('');
     const navigate = useNavigate();
     const [open, setOpen] = useState(true); // State to manage drawer open/close
 
@@ -28,8 +34,6 @@ const NewOrder = () => {
         setOpenSections(prevState => ({ ...prevState, [section]: !prevState[section] }));
     };
 
-    const [activeStep, setActiveStep] = React.useState(0);
-
     const steps = ['Customer Details', 'Trip Details', 'Passenger Info', 'Payment Info'];
 
     const handleNext = () => {
@@ -39,6 +43,18 @@ const NewOrder = () => {
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
+
+    const [passengerCount, setPassengerCount] = useState(1);
+    const [children, setChildren] = useState([{ name: '', age: '', gender: '' }]);
+
+    const handleAddPassenger = () => {
+        setPassengerCount(passengerCount + 1);
+    };
+
+    const handleAddChild = () => {
+        setChildren([...children, { name: '', age: '', gender: '' }]);
+    };
+
 
     return (
         <Box sx={{ display: 'flex' }}>
@@ -283,7 +299,7 @@ const NewOrder = () => {
                         Add Passenger
                     </Typography>
                 </Box>
-                <Container maxWidth="sm" sx={{ mt: 4, mb: 4,height: '400px' }}>
+                <Container maxWidth="md" sx={{ mt: 4, mb: 4, height: '600px', shadow: 3, padding: '20px', borderRadius: '10px' }}>
                     <Box sx={{ mt: 4, textAlign: 'center' }}>
                         <Stepper activeStep={activeStep} alternativeLabel>
                             {steps.map((label) => (
@@ -293,6 +309,25 @@ const NewOrder = () => {
                             ))}
                         </Stepper>
 
+                        {/* Train Animation Track */}
+                        {/* <Box className="track">
+                            {steps.map((label, index) => (
+                                <div key={label} className="station">
+                                    <Typography
+                                        variant="body1"
+                                        className={`station-label ${activeStep === index ? 'active' : ''}`}
+                                    >
+                                        {label}
+                                    </Typography>
+                                    {index < steps.length - 1 && <div className="track-line" />} 
+                                </div>
+                            ))}
+                            <TrainIcon
+                                className="train-icon"
+                                style={{ transform: `translateX(${activeStep * 25}%)` }}
+                            />
+                        </Box> */}
+
                         <Box sx={{ mt: 4 }}>
                             {activeStep === 0 && (
                                 <Box component="form" sx={{ mt: 2 }}>
@@ -301,20 +336,256 @@ const NewOrder = () => {
                                         label="Customer Name"
                                         fullWidth
                                         margin="normal"
+                                        onChange={(e) => setCustomerName(e.target.value)}
                                     />
                                     <TextField
                                         required
                                         label="Mobile No."
                                         fullWidth
                                         margin="normal"
+                                        onChange={(e) => setMobileNo(e.target.value)}
                                     />
-                                    <Button variant="contained" color="primary" onClick={handleNext}>
+                                    <Button
+                                        variant="contained"
+                                        color="primary"
+                                        onClick={handleNext}
+                                        sx={{ mt: 2 }}
+                                    >
                                         Next
                                     </Button>
                                 </Box>
                             )}
 
                             {/* Additional steps would go here (e.g., Trip Details, Passenger Info, Payment Info) */}
+                            {activeStep === 1 && (
+                                <Box component="form" sx={{ mt: 2, mb: 3 }}>
+                                    <Grid container spacing={2}>
+                                        <Grid item xs={6}>
+                                            <TextField
+                                                required
+                                                label="From"
+                                                fullWidth
+                                                margin="normal"
+
+                                            />
+                                            <TextField
+                                                required
+                                                label="Date"
+                                                type="date"
+                                                fullWidth
+                                                margin="normal"
+                                                InputLabelProps={{
+                                                    shrink: true,
+                                                }}
+                                            />
+                                            <TextField
+                                                required
+                                                label="Train Number"
+                                                type='number'
+                                                fullWidth
+                                                margin="normal"
+                                            />
+                                            <FormControl fullWidth margin="normal">
+                                                <InputLabel>Quota</InputLabel>
+                                                <Select
+                                                    value={Quota}
+                                                    onChange={(e) => setQuota(e.target.value)}
+                                                    label="Quota"
+                                                >
+                                                    <MenuItem value="Tatkal">Tatkal</MenuItem>
+                                                    <MenuItem value="General">General</MenuItem>
+                                                    <MenuItem value="Premium Tatkal">Premium Tatkal</MenuItem>
+                                                    <MenuItem value="Ladies">Ladies</MenuItem>
+                                                    <MenuItem value="Senior Citizen / Lower Berth">Senior Citizen/Lower Berth</MenuItem>
+                                                </Select>
+                                            </FormControl>
+                                        </Grid>
+                                        <Grid item xs={6}>
+                                            <TextField
+                                                required
+                                                label="To"
+                                                fullWidth
+                                                margin="normal"
+                                            />
+                                            <TextField
+                                                required
+                                                label="Time"
+                                                type="time"
+                                                fullWidth
+                                                margin="normal"
+                                                InputLabelProps={{
+                                                    shrink: true,
+                                                }}
+                                            />
+                                            <FormControl fullWidth margin="normal">
+                                                <InputLabel>Class</InputLabel>
+                                                <Select
+                                                    value={Class}
+                                                    onChange={(e) => setClass(e.target.value)}
+                                                    label="Class"
+                                                >
+                                                    <MenuItem value="Sleeper">Sleeper</MenuItem>
+                                                    <MenuItem value="3AC">3AC</MenuItem>
+                                                    <MenuItem value="2AC">2AC</MenuItem>
+                                                    <MenuItem value="1AC">1AC</MenuItem>
+                                                    <MenuItem value="Second Seating">Second Seating</MenuItem>
+                                                    <MenuItem value="Chair Car">Chair Car</MenuItem>
+                                                    <MenuItem value="First Class">First Class</MenuItem>
+                                                </Select>
+                                            </FormControl>
+                                            <TextField
+                                                required
+                                                label="Boarding Station(Optional)
+"
+                                                fullWidth
+                                                margin="normal"
+                                            />
+                                        </Grid>
+                                        <TextField
+                                            required
+                                            label="Remark"
+                                            fullWidth
+                                            margin="normal"
+                                            sx={{ ml: 2 }}
+                                        />
+                                    </Grid>
+                                </Box>
+                            )}
+
+                            {activeStep === 2 && (
+                                <Box sx={{ maxWidth: 600, mx: 'auto', mt: 4, p: 3, borderRadius: 2 }}>
+                                    <Typography variant="h6" sx={{ color: 'green', mb: 2 }}>Enter Passenger Details</Typography>
+
+                                    {[...Array(passengerCount)].map((_, i) => (
+                                        <Box key={i} sx={{ mb: 2 }}>
+                                            <TextField
+                                                required
+                                                label="Name"
+                                                fullWidth
+                                                variant="outlined"
+                                                sx={{ mb: 2 }}
+                                            />
+                                            <TextField
+                                                required
+                                                label="Age"
+                                                type="number"
+                                                fullWidth
+                                                variant="outlined"
+                                                sx={{ mb: 2 }}
+                                            />
+                                            <FormControl fullWidth variant="outlined" sx={{ mb: 2 }}>
+                                                <InputLabel>Gender</InputLabel>
+                                                <Select label="Gender">
+                                                    <MenuItem value="male">Male</MenuItem>
+                                                    <MenuItem value="female">Female</MenuItem>
+                                                    <MenuItem value="other">Other</MenuItem>
+                                                </Select>
+                                            </FormControl>
+                                            <FormControl fullWidth variant="outlined" sx={{ mb: 2 }}>
+                                                <InputLabel>Prefer Berth</InputLabel>
+                                                <Select label="Prefer Berth">
+                                                    <MenuItem value="lower">Lower</MenuItem>
+                                                    <MenuItem value="middle">Middle</MenuItem>
+                                                    <MenuItem value="upper">Upper</MenuItem>
+                                                </Select>
+                                            </FormControl>
+                                            <FormControl fullWidth variant="outlined" sx={{ mb: 2 }}>
+                                                <InputLabel>Meal</InputLabel>
+                                                <Select label="Meal" defaultValue="none">
+                                                    <MenuItem value="none">None</MenuItem>
+                                                    <MenuItem value="veg">Veg</MenuItem>
+                                                    <MenuItem value="nonveg">Non-Veg</MenuItem>
+                                                </Select>
+                                            </FormControl>
+                                        </Box>
+                                    ))}
+
+                                    <Button variant="outlined" color="primary" onClick={handleAddPassenger} sx={{ mb: 2 }}>
+                                        Add Passenger
+                                    </Button>
+
+                                    <Typography variant="h6" sx={{ color: 'green', mb: 2 }}>Children Below 5 Years</Typography>
+
+                                    {children.map((_, i) => (
+                                        <Box key={i} sx={{ display: 'flex', gap: 2, mb: 2 }}>
+                                            <TextField
+                                                label={`Child ${i + 1} Name`}
+                                                fullWidth
+                                                variant="outlined"
+                                            />
+                                            <FormControl fullWidth variant="outlined">
+                                                <InputLabel>Age</InputLabel>
+                                                <Select label="Age">
+                                                    {[1, 2, 3, 4].map((age) => (
+                                                        <MenuItem key={age} value={age}>{age}</MenuItem>
+                                                    ))}
+                                                </Select>
+                                            </FormControl>
+                                            <FormControl fullWidth variant="outlined">
+                                                <InputLabel>Gender</InputLabel>
+                                                <Select label="Gender">
+                                                    <MenuItem value="male">Male</MenuItem>
+                                                    <MenuItem value="female">Female</MenuItem>
+                                                    <MenuItem value="other">Other</MenuItem>
+                                                </Select>
+                                            </FormControl>
+                                        </Box>
+                                    ))}
+
+                                    <Button variant="outlined" color="primary" onClick={handleAddChild} sx={{ mb: 2 }}>
+                                        Add Child
+                                    </Button>
+
+                                </Box>
+                            )}
+
+                            {activeStep === 3 && (
+                                <Box component="form" sx={{ mt: 2, mb: 3 }}>
+                                    <Grid container spacing={2}>
+                                        <Grid item xs={6}>
+                                            <TextField
+                                                required
+                                                label="Total Amount"
+                                                type='number'
+                                                fullWidth
+                                                margin="normal"
+                                            />
+                                            <TextField
+                                                required
+                                                label="Advance Date"
+                                                type="date"
+                                                fullWidth
+                                                margin="normal"
+                                                InputLabelProps={{
+                                                    shrink: true,
+                                                }}
+                                            />
+                                        </Grid>
+                                        <Grid item xs={6}>
+                                            <TextField
+                                                required
+                                                label="Advance Payment"
+                                                type='number'
+                                                fullWidth
+                                                margin="normal"
+                                            />
+                                            <FormControl fullWidth margin="normal">
+                                                <InputLabel>Select Payment Type</InputLabel>
+                                                <Select
+                                                    value={paymentType}
+                                                    onChange={(e) => setPaymentType(e.target.value)}
+                                                    label="Class"
+                                                >
+                                                    <MenuItem value="None">None</MenuItem>
+                                                    <MenuItem value="Bank">Bank</MenuItem>
+                                                    <MenuItem value="UPI">UPI</MenuItem>
+                                                    <MenuItem value="Cash">Cash</MenuItem>
+                                                </Select>
+                                            </FormControl>
+                                        </Grid>
+                                    </Grid>
+                                </Box>
+                            )}
 
                             {activeStep > 0 && (
                                 <Box>
@@ -326,12 +597,12 @@ const NewOrder = () => {
                             )}
                         </Box>
                     </Box>
-                </Container>
 
-                {/* Footer */}
-                <Box mt={4} textAlign="center">
-                    <Typography variant="body2">Copyright © vivek. All rights reserved.</Typography>
-                </Box>
+                    {/* Footer */}
+                    <Box mt={10} textAlign="center">
+                        <Typography variant="body2">Copyright © vivek. All rights reserved.</Typography>
+                    </Box>
+                </Container>
             </Box>
         </Box>
     );
