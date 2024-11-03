@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
-import { AppBar, Toolbar, Typography, Drawer, List, ListItem, ListItemIcon, ListItemText, Box, Paper, Grid, Button, Table, TableBody, TableCell, TableHead, TableRow, Avatar, Divider, TextField, IconButton, Collapse } from '@mui/material';
+import { AppBar, Toolbar, Typography, Drawer, List, ListItem, ListItemIcon, ListItemText, Box, Paper, Grid, Button, Table, TableBody, TableCell, TableHead, TableRow, TableContainer, Avatar, Divider, TextField, IconButton, Collapse, MenuItem } from '@mui/material';
 import { Home, Person, ShoppingCart, Payment, Info, Search, AssignmentTurnedIn, ExpandLess, ExpandMore, Add, Create, Flight, Cancel, ViewList, AddShoppingCart, Report, PendingActions, Today, ChevronLeft, ChevronRight } from '@mui/icons-material'; // Added AssignmentTurnedIn
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import AdminIcon from '@mui/icons-material/AccountCircle'; // for the admin icon
@@ -27,6 +27,13 @@ const Dashboard = () => {
     const handleToggle = (section) => {
         setOpenSections(prevState => ({ ...prevState, [section]: !prevState[section] }));
     };
+
+    const data = [
+        { id: 1, mobileNo: '123-456-7890', active: 'Yes', userType: 'Admin' },
+        { id: 2, mobileNo: '987-654-3210', active: 'No', userType: 'User' },
+        { id: 3, mobileNo: '555-123-4567', active: 'Yes', userType: 'Guest' },
+        { id: 4, mobileNo: '111-222-3333', active: 'No', userType: 'Admin' },
+    ];
 
     return (
         <Box sx={{ display: 'flex' }}>
@@ -265,95 +272,39 @@ const Dashboard = () => {
                     </Toolbar>
                 </AppBar>
 
-                <Box mt={2}>
-                    {/* Stats Grid */}
-                    <Grid container spacing={2}>
-                        {['Today Order', 'Today Booking', 'Today Total Payment', 'Today Total Refund'].map((stat, index) => (
-                            <Grid item xs={12} sm={6} md={3} key={stat}>
-                                <Paper sx={{ p: 2, textAlign: 'center', backgroundColor: '#f5f5f5' }}>
-                                    <Typography variant="h6" color="primary">{stat}</Typography>
-                                    <Typography variant="h4">
-                                        {index === 0 && '3'}
-                                        {index === 1 && '0'}
-                                        {index === 2 && '2000.00'}
-                                        {index === 3 && '0.00'}
-                                    </Typography>
-                                    <Button variant="contained" sx={{ mt: 1 }}>
-                                        More info
-                                    </Button>
-                                </Paper>
-                            </Grid>
-                        ))}
-                    </Grid>
-
-                    {/* Tables */}
-                    <Grid container spacing={2} mt={2} direction={'column'}>
-                        <Grid item xs={12} md={6}>
-                            <Paper>
-                                <Typography variant="h6" sx={{ p: 2, backgroundColor: '#f5f5f5' }}>
-                                    Today Booking
-                                </Typography>
-                                <Table>
-                                    <TableHead>
-                                        <TableRow>
-                                            <TableCell>Booking ID</TableCell>
-                                            <TableCell>Mobile</TableCell>
-                                            <TableCell>From</TableCell>
-                                            <TableCell>To</TableCell>
-                                            <TableCell>Status</TableCell>
-                                        </TableRow>
-                                    </TableHead>
-                                    <TableBody>
-                                        <TableRow>
-                                            <TableCell>#4922</TableCell>
-                                            <TableCell>9523162625</TableCell>
-                                            <TableCell>DBG</TableCell>
-                                            <TableCell>NDLS</TableCell>
-                                            <TableCell><Button variant="outlined">Check Details</Button></TableCell>
-                                        </TableRow>
-                                    </TableBody>
-                                </Table>
-                                <Button sx={{ m: 2 }}>View All Orders</Button>
-                            </Paper>
-                        </Grid>
-
-                        <Grid item xs={12} md={6}>
-                            <Paper>
-                                <Typography variant="h6" sx={{ p: 2, backgroundColor: '#f5f5f5' }}>
-                                    Today Orders
-                                </Typography>
-                                <Table>
-                                    <TableHead>
-                                        <TableRow>
-                                            <TableCell>Booking ID</TableCell>
-                                            <TableCell>Mobile</TableCell>
-                                            <TableCell>From</TableCell>
-                                            <TableCell>To</TableCell>
-                                            <TableCell>Status</TableCell>
-                                        </TableRow>
-                                    </TableHead>
-                                    <TableBody>
-                                        <TableRow>
-                                            <TableCell>#4923</TableCell>
-                                            <TableCell>7063882810</TableCell>
-                                            <TableCell>DGP</TableCell>
-                                            <TableCell>NBQ</TableCell>
-                                            <TableCell><Button variant="outlined">View Details</Button></TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell>#4924</TableCell>
-                                            <TableCell>7004386122</TableCell>
-                                            <TableCell>MFP</TableCell>
-                                            <TableCell>NDLS</TableCell>
-                                            <TableCell><Button variant="outlined">View Details</Button></TableCell>
-                                        </TableRow>
-                                    </TableBody>
-                                </Table>
-                                <Button sx={{ m: 2 }}>Place New Order</Button>
-                            </Paper>
-                        </Grid>
-                    </Grid>
+                <hr></hr>
+                <Box mt={4}>
+                    <Typography variant="h5">Payment Report</Typography>
                 </Box>
+                <TableContainer component={Paper} sx={{ mt: 2 , height: '400px'}}>
+                    <Table aria-label="simple table">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>Action</TableCell>
+                                <TableCell>Mobile No.</TableCell>
+                                <TableCell>Active</TableCell>
+                                <TableCell>User Type</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {data.map((row) => (
+                                <TableRow key={row.id}>
+                                    <TableCell>
+                                        <Button variant="contained" color="primary" size="small">
+                                            Edit
+                                        </Button>
+                                        <Button variant="outlined" color="secondary" size="small" style={{ marginLeft: '8px' }}>
+                                            Delete
+                                        </Button>
+                                    </TableCell>
+                                    <TableCell>{row.mobileNo}</TableCell>
+                                    <TableCell>{row.active}</TableCell>
+                                    <TableCell>{row.userType}</TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
 
                 {/* Footer */}
                 <Box mt={4} textAlign="center">
