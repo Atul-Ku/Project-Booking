@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
-import { AppBar, Toolbar, Typography, Drawer, List, ListItem, ListItemIcon, ListItemText, Box, Paper, Grid, Button, Table, TableBody, TableCell, TableHead, TableRow, Avatar, Divider, TextField, IconButton, Collapse } from '@mui/material';
+import { AppBar, Toolbar, Typography, Drawer, List, ListItem, ListItemIcon, ListItemText, Box, Paper, Grid, Button, Table, TableBody, TableCell, TableHead, TableRow, Avatar, Divider, TextField, IconButton, Collapse , MenuItem } from '@mui/material';
 import { Home, Person, ShoppingCart, Payment, Info, Search, AssignmentTurnedIn, ExpandLess, ExpandMore, Add, Create, Flight, Cancel, ViewList, AddShoppingCart, Report, PendingActions, Today, ChevronLeft, ChevronRight } from '@mui/icons-material'; // Added AssignmentTurnedIn
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import AdminIcon from '@mui/icons-material/AccountCircle'; // for the admin icon
@@ -265,96 +265,58 @@ const Dashboard = () => {
                     </Toolbar>
                 </AppBar>
 
-                <Box mt={2}>
-                    {/* Stats Grid */}
-                    <Grid container spacing={2}>
-                        {['Today Order', 'Today Booking', 'Today Total Payment', 'Today Total Refund'].map((stat, index) => (
-                            <Grid item xs={12} sm={6} md={3} key={stat}>
-                                <Paper sx={{ p: 2, textAlign: 'center', backgroundColor: '#f5f5f5' }}>
-                                    <Typography variant="h6" color="primary">{stat}</Typography>
-                                    <Typography variant="h4">
-                                        {index === 0 && '3'}
-                                        {index === 1 && '0'}
-                                        {index === 2 && '2000.00'}
-                                        {index === 3 && '0.00'}
-                                    </Typography>
-                                    <Button variant="contained" sx={{ mt: 1 }}>
-                                        More info
-                                    </Button>
-                                </Paper>
+                <Box sx={{ backgroundColor: '#e8edf3', minHeight: '100vh', p: 4 }}>
+                    <Box sx={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
+                        <Paper elevation={3} sx={{ p: 3 }}>
+                            <Typography variant="h5" sx={{ fontWeight: 'bold', mb: 2 }}>
+                                Create User
+                            </Typography>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12} md={6}>
+                                    <TextField fullWidth label="User Name" variant="outlined" />
+                                </Grid>
+                                <Grid item xs={12} md={6}>
+                                    <TextField fullWidth label="Password" type="password" variant="outlined" />
+                                </Grid>
+                                <Grid item xs={12} md={6}>
+                                    <TextField fullWidth label="Confirm Password" type="password" variant="outlined" />
+                                </Grid>
+                                <Grid item xs={12} md={6}>
+                                    <TextField
+                                        fullWidth
+                                        select
+                                        label="User Type"
+                                        variant="outlined"
+                                        defaultValue="User"
+                                    >
+                                        <MenuItem value="User">User</MenuItem>
+                                        <MenuItem value="Admin">Admin</MenuItem>
+                                    </TextField>
+                                </Grid>
+                                <Grid item xs={12} md={6}>
+                                    <TextField
+                                        fullWidth
+                                        select
+                                        label="Active"
+                                        variant="outlined"
+                                        defaultValue="Yes"
+                                    >
+                                        <MenuItem value="Yes">Yes</MenuItem>
+                                        <MenuItem value="No">No</MenuItem>
+                                    </TextField>
+                                </Grid>
                             </Grid>
-                        ))}
-                    </Grid>
-
-                    {/* Tables */}
-                    <Grid container spacing={2} mt={2} direction={'column'}>
-                        <Grid item xs={12} md={6}>
-                            <Paper>
-                                <Typography variant="h6" sx={{ p: 2, backgroundColor: '#f5f5f5' }}>
-                                    Today Booking
-                                </Typography>
-                                <Table>
-                                    <TableHead>
-                                        <TableRow>
-                                            <TableCell>Booking ID</TableCell>
-                                            <TableCell>Mobile</TableCell>
-                                            <TableCell>From</TableCell>
-                                            <TableCell>To</TableCell>
-                                            <TableCell>Status</TableCell>
-                                        </TableRow>
-                                    </TableHead>
-                                    <TableBody>
-                                        <TableRow>
-                                            <TableCell>#4922</TableCell>
-                                            <TableCell>9523162625</TableCell>
-                                            <TableCell>DBG</TableCell>
-                                            <TableCell>NDLS</TableCell>
-                                            <TableCell><Button variant="outlined">Check Details</Button></TableCell>
-                                        </TableRow>
-                                    </TableBody>
-                                </Table>
-                                <Button sx={{ m: 2 }}>View All Orders</Button>
-                            </Paper>
-                        </Grid>
-
-                        <Grid item xs={12} md={6}>
-                            <Paper>
-                                <Typography variant="h6" sx={{ p: 2, backgroundColor: '#f5f5f5' }}>
-                                    Today Orders
-                                </Typography>
-                                <Table>
-                                    <TableHead>
-                                        <TableRow>
-                                            <TableCell>Booking ID</TableCell>
-                                            <TableCell>Mobile</TableCell>
-                                            <TableCell>From</TableCell>
-                                            <TableCell>To</TableCell>
-                                            <TableCell>Status</TableCell>
-                                        </TableRow>
-                                    </TableHead>
-                                    <TableBody>
-                                        <TableRow>
-                                            <TableCell>#4923</TableCell>
-                                            <TableCell>7063882810</TableCell>
-                                            <TableCell>DGP</TableCell>
-                                            <TableCell>NBQ</TableCell>
-                                            <TableCell><Button variant="outlined">View Details</Button></TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell>#4924</TableCell>
-                                            <TableCell>7004386122</TableCell>
-                                            <TableCell>MFP</TableCell>
-                                            <TableCell>NDLS</TableCell>
-                                            <TableCell><Button variant="outlined">View Details</Button></TableCell>
-                                        </TableRow>
-                                    </TableBody>
-                                </Table>
-                                <Button sx={{ m: 2 }}>Place New Order</Button>
-                            </Paper>
-                        </Grid>
-                    </Grid>
+                            <Box sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
+                                <Button variant="contained" color="primary" sx={{ mr: 2 }}>
+                                    Save
+                                </Button>
+                                <Button variant="contained" color="error">
+                                    Cancel
+                                </Button>
+                            </Box>
+                        </Paper>
+                    </Box>
                 </Box>
-
                 {/* Footer */}
                 <Box mt={4} textAlign="center">
                     <Typography variant="body2">Copyright © vivek. All rights reserved.</Typography>
