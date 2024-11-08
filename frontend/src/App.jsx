@@ -15,7 +15,7 @@ const AdminDashboard = lazy(() => import("./admin/dashboard"))
 const AddUser = lazy(() => import("./admin/User/addUser"));
 const CreateUser = lazy(() => import("./admin/User/createUser"));
 const NewOrder = lazy(() => import("./admin/Order/newOrder"));
-const viewOrders = lazy(() => import("./admin/Order/viewOrder"));
+const ViewOrders = lazy(() => import("./admin/Order/viewOrder"));
 const todayBooking = lazy(() => import("./admin/Booking/today"));
 const yesterdayBooking = lazy(() => import("./admin/Booking/yesterday"));
 const tomorrowBooking = lazy(() => import("./admin/Booking/tomorrow"));
@@ -33,7 +33,7 @@ const App = () => {
           <Route path="/admin/dashboard/add-user" element={<AddUser />} />
           <Route path="/admin/dashboard/create-user" element={<CreateUser />} />
           <Route path="/admin/dashboard/new-order" element={<NewOrder />} />
-          <Route path="/admin/dashboard/view-orders" element={<viewOrders />} />
+          <Route path="/admin/dashboard/view-orders" element={<ViewOrders />} />
           <Route path="/admin/dashboard/today-booking" element={<todayBooking />} />
           <Route path="/admin/dashboard/yesterday-booking" element={<yesterdayBooking />} />
           <Route path="/admin/dashboard/tomorrow-booking" element={<tomorrowBooking />} />
