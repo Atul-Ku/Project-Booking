@@ -330,7 +330,7 @@ const ListView = () => {
 
         <hr></hr>
         <Container>
-          <Typography variant="h4" gutterBottom>List View</Typography>
+          <Typography variant="h5" marginBottom={3} gutterBottom>List View</Typography>
 
           {/* Filter Section */}
           <Grid container spacing={2} style={{ marginBottom: '2rem' }}>
