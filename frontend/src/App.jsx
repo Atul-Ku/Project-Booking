@@ -19,9 +19,9 @@ const ViewOrders = lazy(() => import("./admin/Order/viewOrder"));
 const TodayBooking = lazy(() => import("./admin/Booking/today"));
 const YesterdayBooking = lazy(() => import("./admin/Booking/yesterday"));
 const TomorrowBooking = lazy(() => import("./admin/Booking/tomorrow"));
-const paymentReport = lazy(() => import("./admin/Payment/report"));
-const pendingPayment = lazy(() => import("./admin/Payment/pendingPayment"));
-const todayPayment = lazy(() => import("./admin/Payment/todayPayment"));
+const PaymentReport = lazy(() => import("./admin/Payment/report"));
+const PendingPayment = lazy(() => import("./admin/Payment/pendingPayment"));
+const TodayPayment = lazy(() => import("./admin/Payment/todayPayment"));
 const App = () => {
 
   return (
@@ -37,9 +37,9 @@ const App = () => {
           <Route path="/admin/dashboard/today-booking" element={<TodayBooking />} />
           <Route path="/admin/dashboard/yesterday-booking" element={<YesterdayBooking />} />
           <Route path="/admin/dashboard/tomorrow-booking" element={<TomorrowBooking />} />
-          <Route path="/admin/dashboard/payment-report" element={<paymentReport />} />
-          <Route path="/admin/dashboard/pending-payment" element={<pendingPayment />} />
-          <Route path="/admin/dashboard/today-payment" element={<todayPayment />} />
+          <Route path="/admin/dashboard/payment-report" element={<PaymentReport />} />
+          <Route path="/admin/dashboard/pending-payment" element={<PendingPayment />} />
+          <Route path="/admin/dashboard/today-payment" element={<TodayPayment />} />
           <Route path="/" element={<Home />} />
 
           <Route path="/services" element={<Services />} />
