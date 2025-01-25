@@ -4,14 +4,19 @@
     align-items: center;
     gap: 30px;
     flex-wrap: wrap; /* Allow wrapping on small screens */
-    background-color: #06dd83;
+    background-color: rgb(36,75,142);
     height: 5vw;
     padding: 5px;
   }
   
   .service-item {
-    display: flex;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
     align-items: center;
+    padding: 10px;
+    justify-content: center;
     font-size: 20px;
     font-weight: bolder;
     gap: 20px;
@@ -21,7 +26,13 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    margin-bottom: 5px;
+  }
+
+  .service-item span {
+    margin-left: 10px;
+    font-size: 18px;
+    color: white;
+    text-align: center;
   }
 
   /* Train icon color */

@@ -1,11 +1,13 @@
 // src/store.js
-import {createSlice } from '@reduxjs/toolkit';
-
+import { createSlice } from "@reduxjs/toolkit";
+import { useNavigate } from 'react-router-dom';
 const authSlice = createSlice({
-  name: 'auth',
+  
+  name: "auth",
   initialState: {
-    username: '',
-    password: '',
+    username: "",
+    password: "",
+    isLoggedIn: false, // Add isLoggedIn to track login status
   },
   reducers: {
     setUsername: (state, action) => {
@@ -14,9 +16,17 @@ const authSlice = createSlice({
     setPassword: (state, action) => {
       state.password = action.payload;
     },
-    login: (state, action) => {
-      // Add login logic here
-      console.log(state.username,'Logging in');
+    login: (state,action) => {
+     const {navigate}=action.payload;
+      if (state.username === "admin" && state.password === "password") {
+        state.isLoggedIn = true;
+        console.log("Logging in successful");
+       navigate('/apilink');
+      } else {
+        state.isLoggedIn = false;
+        console.log("Login failed");
+       alert("Bad Credentials")
+      }
     },
   },
 });

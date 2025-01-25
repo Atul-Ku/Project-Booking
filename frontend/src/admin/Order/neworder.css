@@ -1,0 +1,56 @@
+/* App.css */
+.track {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    margin-top: 20px;
+    padding: 20px 0;
+    border-bottom: 2px solid #cfd8dc;
+    overflow: hidden;
+    height: 40px;
+}
+
+.train-container {
+    position: relative;
+    top: 10px;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    pointer-events: none; /* Prevents any interaction with the train icon */
+}
+
+.train-icon {
+    font-size: 2rem;
+    color: #1e88e5;
+    position: absolute;
+    transition: left 2.5s ease-in-out;
+}
+
+.station {
+    text-align: center;
+    flex: 1;
+    position: relative;
+}
+
+.station-label {
+    color: #90a4ae;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.station-label.active {
+    color: #1e88e5;
+}
+
+.track-line {
+    width: 100%;
+    height: 5px;
+    background-color: #cfd8dc;
+    position: absolute;
+    top: 40%;
+    left: 60%;
+    transform: translateX(-40%);
+    transform: translateY(80%);
+    z-index: -1;
+}
